@@ -1,5 +1,6 @@
 
 using auto.browser.Configuration;
+using auto.browser.Tests;
 using auto.browser.webdriver;
 
 namespace Auto
@@ -12,12 +13,14 @@ namespace Auto
 
             // Add services to the container.
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers();https://git-fork.com/images/image1Win.jpg
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.Configure<WebBrowserOptions>(builder.Configuration.GetSection(WebBrowserOptions.Position));
             builder.Services.AddTransient<WebDriverFactory>();
+            builder.Services.AddTransient<OpenRegistration>();
+            builder.Services.AddTransient<RegisterAccount>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -33,9 +36,6 @@ namespace Auto
 
 
             app.MapControllers();
-            var factory = app.Services.GetRequiredService<WebDriverFactory>();
-            var browser = factory.CreateDriver();
-            browser.Navigate().GoToUrl("https://baltbet.ru/");
             app.Run();
         }
     }
